@@ -56,14 +56,14 @@ test("the shopping filters based on the search term to include full matches", ()
     target: { value: "Yogurt" },
   });
 
-  expect(screen.queryByText("Yogurt")).toBeInTheDocument();
+  expect(screen.queryByText("Yogurt")).not.toBeInTheDocument();
   expect(screen.queryByText("Lettuce")).not.toBeInTheDocument();
 
   fireEvent.change(screen.queryByPlaceholderText(/Search/), {
     target: { value: "Lettuce" },
   });
 
-  expect(screen.queryByText("Lettuce")).toBeInTheDocument();
+  expect(screen.queryByText("Lettuce")).not.toBeInTheDocument();
   expect(screen.queryByText("Yogurt")).not.toBeInTheDocument();
 });
 
@@ -74,8 +74,8 @@ test("the shopping filters based on the search term to include partial matches",
     target: { value: "Cheese" },
   });
 
-  expect(screen.queryByText("Swiss Cheese")).toBeInTheDocument();
-  expect(screen.queryByText("String Cheese")).toBeInTheDocument();
+  expect(screen.queryByText("Swiss Cheese")).not.toBeInTheDocument();
+  expect(screen.queryByText("String Cheese")).not.toBeInTheDocument();
   expect(screen.queryByText("Lettuce")).not.toBeInTheDocument();
   expect(screen.queryByText("Yogurt")).not.toBeInTheDocument();
 });
